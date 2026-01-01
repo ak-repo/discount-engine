@@ -2,7 +2,7 @@ package engine
 
 type OrderInput struct {
 	OrderTotal   float64 `json:"order_total"`
-	CustomerType string  `josn:"customer_type"`
+	CustomerType string  `json:"customer_type"`
 }
 
 type AppliedRule struct {

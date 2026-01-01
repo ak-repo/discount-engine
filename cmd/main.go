@@ -26,6 +26,11 @@ func main() {
 			http.Error(w, err.Error(), http.StatusBadRequest)
 			return
 		}
+		if req.CustomerType == "" || req.OrderTotal == 0 {
+			log.Println(req)
+			http.Error(w, "order details missing", http.StatusBadRequest)
+			return
+		}
 
 		applied, finalTotal := discountEngine.ApplyBestDiscount(req)
 

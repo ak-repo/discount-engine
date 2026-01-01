@@ -15,13 +15,11 @@ func (e *Engine) ApplyBestDiscount(order OrderInput) (AppliedRule, float64) {
 	var best AppliedRule
 	bestDiscount := 0.0
 	bestPriority := -1
-	log.Println("rules: ",e.rules)
 
 	for _, rule := range e.rules {
 		if !ruleMatches(rule, order) {
 			continue
 		}
-		log.Println("rule:", rule)
 
 		discount := calculateDiscount(rule, order)
 
@@ -30,6 +28,7 @@ func (e *Engine) ApplyBestDiscount(order OrderInput) (AppliedRule, float64) {
 
 			bestPriority = rule.Priority
 			bestDiscount = discount
+			log.Println("rule:", rule.ID)
 			best = AppliedRule{
 				RuleId:         rule.ID,
 				DiscountAmount: discount,
